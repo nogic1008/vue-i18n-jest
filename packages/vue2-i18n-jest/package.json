@@ -47,8 +47,8 @@
   "license": "MIT",
   "main": "./lib/index.js",
   "peerDependencies": {
+    "@vue/vue2-jest": "^26.0.0",
     "vue": "^2.5",
-    "vue-jest": "^4.0.0-beta.3",
     "vue-template-compiler": "^2.5"
   },
   "repository": {

@@ -2,7 +2,8 @@
   "private": true,
   "version": "26.0.0",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "e2e/**"
   ],
   "changelog": {
     "labels": {
@@ -30,17 +31,14 @@
     "shipjs": "^0.23.0"
   },
   "scripts": {
-    "build": "tsc -p .",
+    "build": "yarn workspaces run build",
     "changelog": "conventional-changelog -i CHANGELOG.md -s -n ./node_modules/git-commit-message-convention/convention.js",
-    "clean": "rm -rf ./coverage && rm -rf ./lib/*.js*",
-    "coverage": "opener coverage/lcov-report/index.html",
     "lint": "eslint ./src ./test --ext .ts",
     "release:prepare": "shipjs prepare",
     "release:trigger": "shipjs trigger",
-    "test": "npm run lint && npm run test:cover",
-    "test:cover": "npm run test:unit -- --coverage",
-    "test:e2e": "yarn build && yarn --cwd ./e2e install && yarn --cwd ./e2e test",
-    "test:unit": "jest --env node",
-    "watch": "tsc -p . --watch"
+    "test": "yarn run lint && yarn run test:cover",
+    "test:cover": "yarn run test:unit --coverage",
+    "test:e2e": "yarn build && yarn workspace e2e-test-vue2 test",
+    "test:unit": "yarn workspace @intlify/vue2-i18n-jest test --env node"
   }
 }
